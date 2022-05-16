@@ -1,20 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 // 【ユーザー】
 // ログイン画面
 Route::get('/login', 'Auth\User\LoginController@showLoginForm')->name('login');
@@ -27,36 +12,36 @@ Route::post('/register', 'Auth\User\RegisterController@register');
 Route::post('/logout', 'Auth\User\LoginController@logout')->name('logout');
 
 // トップ
-Route::get('/', 'User\ReservationController@home')->name('home');
+Route::get('/', 'ReservationController@home')->name('home');
 // 会議室選択
-Route::get('/select-room', 'User\ReservationController@select')->name('room.select');
+Route::get('/select-room', 'ReservationController@select')->name('room.select');
 // 空き状況
-Route::get('/room/{year}/{month}/{room}', 'User\RoomController@index')->name('room.index');
+Route::get('/room/{year}/{month}/{room}', 'RoomController@index')->name('room.index');
 // 部屋詳細
-Route::get('/rooms', 'User\RoomController@show')->name('room.show');
+Route::get('/rooms', 'RoomController@show')->name('room.show');
 
 // 予約画面
-Route::get('/reservation/create/{year}/{month}/{day}/{room}', 'User\ReservationController@create')->name('reservation.create');
-Route::post('/reservation/store/{year}/{month}/{day}/{room}', 'User\ReservationController@store')->name('reservation.store');
+Route::get('/reservation/create/{year}/{month}/{day}/{room}', 'ReservationController@create')->name('reservation.create');
+Route::post('/reservation/store/{year}/{month}/{day}/{room}', 'ReservationController@store')->name('reservation.store');
 // 予約完了画面
-Route::get('/reservation/stored', 'User\ReservationController@thanks')->name('reservation.thanks');
+Route::get('/reservation/stored', 'ReservationController@thanks')->name('reservation.thanks');
 // 予約詳細画面
-Route::get('/reservation/{reservation}', 'User\ReservationController@show')->name('reservation.show');
+Route::get('/reservation/{reservation}', 'ReservationController@show')->name('reservation.show');
 // 予約変更
-Route::get('/reservation/edit/{reservation}', 'User\ReservationController@edit')->name('reservation.edit');
-Route::put('/reservation/update/{reservation}', 'User\ReservationController@update')->name('reservation.update');
+Route::get('/reservation/edit/{reservation}', 'ReservationController@edit')->name('reservation.edit');
+Route::put('/reservation/update/{reservation}', 'ReservationController@update')->name('reservation.update');
 // 予約取消
-Route::delete('/reservation/destroy/{reservation}', 'User\ReservationController@destroy')->name('reservation.destroy');
-Route::get('/reservation/updated', 'User\ReservationController@updated')->name('reservation.updated');
+Route::delete('/reservation/destroy/{reservation}', 'ReservationController@destroy')->name('reservation.destroy');
+Route::get('/reservation/updated', 'ReservationController@updated')->name('reservation.updated');
 
 // 過去履歴一覧
-Route::get('/reservation/history', 'User\ReservationController@history')->name('reservation.history');
+Route::get('/reservation/history', 'ReservationController@history')->name('reservation.history');
 
 // プロフィール
-Route::get('/profile', 'User\UserController@profile')->name('user.profile');
+Route::get('/profile', 'UserController@profile')->name('user.profile');
 // プロフィール変更
-Route::get('/profile.edit', 'User\UserController@edit')->name('user.edit');
-Route::put('/profile.update', 'User\UserController@update')->name('user.update');
+Route::get('/profile.edit', 'UserController@edit')->name('user.edit');
+Route::put('/profile.update', 'UserController@update')->name('user.update');
 
 
 // 【管理者】
